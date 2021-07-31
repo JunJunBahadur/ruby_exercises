@@ -1,18 +1,10 @@
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
 
 def substrings(text, words)
-    result = {}
-    text = text.split(" ")
-    text.map! {|textword| textword.downcase}
-    text.each {|textword| textword.gsub!(/[^0-9A-Za-z]/, '')}
-
-    text = text.join(" ")
-
+    result = Hash.new(0)
     words.each do |word|
-        word_count = text.scan(/(?=#{word})/).count
-        if word_count > 0
-            result[word] = word_count
-        end
+        word_count = text.downcase.scan(/(?=#{word})/).count
+        result[word] = word_count if word_count > 0
     end 
     puts result
 end
